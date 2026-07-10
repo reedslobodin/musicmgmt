@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-DIR="."
-DIR=$1
+DIR="${1:-.}"
 
 if [[ ! -d "$DIR" ]]; then
     echo "'$DIR' is not a valid directory. Exiting." >&2
@@ -10,7 +9,7 @@ fi
 
 FIND_ARGS=(-type f -iname "*.flac")
 
-mapfile -d '' FLAC_FILES < <(find $DIR "${FIND_ARGS[@]}" -print0)
+mapfile -d '' FLAC_FILES < <(find "$DIR" "${FIND_ARGS[@]}" -print0)
 
 TOTAL=${#FLAC_FILES[@]}
 
